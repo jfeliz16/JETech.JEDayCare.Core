@@ -8,13 +8,13 @@ using JETech.JEDayCare.Core.Data;
 
 namespace JETech.JEDayCare.Core.Data.Entities
 {
-    public class SicDbContext : IdentityDbContext<User>
+    public class JEDayCareDbContext : IdentityDbContext<User>
     {
-        public SicDbContext() : base()
+        public JEDayCareDbContext() : base()
         {
         }
 
-        public SicDbContext(DbContextOptions<SicDbContext> opcions):base(opcions)
+        public JEDayCareDbContext(DbContextOptions<JEDayCareDbContext> opcions):base(opcions)
         {
         }
 
@@ -29,7 +29,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-GO9IDF3;Database=SIC;Trusted_Connection=True;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-GO9IDF3;Database=JEDayCare;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
     }

@@ -16,9 +16,9 @@ namespace JETech.JEDayCare.Core.Clients.Domain
     public class Client
     {
         private readonly ActionHelper _actionHelper;
-        private readonly SicDbContext _sicDb;
+        private readonly JEDayCareDbContext _sicDb;
 
-        public Client(SicDbContext sicDb)
+        public Client(JEDayCareDbContext sicDb)
         {
             _actionHelper = new ActionHelper();
             _sicDb = sicDb;

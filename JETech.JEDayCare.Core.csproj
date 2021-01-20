@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210119175857_AddClient.cs" />
-    <Compile Remove="Migrations\20210119175857_AddClient.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Administration\Domain\" />
     <Folder Include="Administration\Helper\" />
     <Folder Include="Administration\Interfaces\" />

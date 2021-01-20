@@ -9,9 +9,9 @@ namespace JETech.JEDayCare.Core.Data
 {
     public class SeedDb
     {
-        private readonly SicDbContext _dbContext;
+        private readonly JEDayCareDbContext _dbContext;
 
-        public SeedDb(JETech.JEDayCare.Core.Data.Entities.SicDbContext dbContext) 
+        public SeedDb(JETech.JEDayCare.Core.Data.Entities.JEDayCareDbContext dbContext) 
         {
             _dbContext = dbContext;
         }

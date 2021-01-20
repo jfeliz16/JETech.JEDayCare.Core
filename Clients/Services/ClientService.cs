@@ -13,10 +13,10 @@ namespace JETech.JEDayCare.Core.Clients.Services
 {
     public class ClientService : IClientService
     {
-        private readonly SicDbContext _dbContext;
+        private readonly JEDayCareDbContext _dbContext;
         private readonly Domain.Client _client;
 
-        public ClientService(SicDbContext dbContext) {
+        public ClientService(JEDayCareDbContext dbContext) {
             _dbContext = dbContext;
             _client = new Domain.Client(dbContext);
         }
