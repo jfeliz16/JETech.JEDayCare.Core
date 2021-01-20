@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=nameServer;Database=nameDataBase;user id=admin;password=hola;" Microsoft.EntityFrameworkCore.SqlServer -o "Data\DbModel" -c nameDbContext -f  --use-database-names
