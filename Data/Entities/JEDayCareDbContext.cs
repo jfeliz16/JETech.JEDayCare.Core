@@ -19,6 +19,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
         }
 
         public DbSet<Contry> Contries { get; set; }
+        public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Status> Statues { get; set; }
         public DbSet<Person> Persons { get; set; }

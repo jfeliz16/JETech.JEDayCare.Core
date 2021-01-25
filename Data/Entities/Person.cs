@@ -35,8 +35,13 @@ namespace JETech.JEDayCare.Core.Data.Entities
         [MaxLength(12)]
         public string Fax { get; set; }
 
+        public int? ContryId { get; set; }
         public Contry Contry { get; set; }
 
+        public int? StateId { get; set; }
+        public State State { get; set; }
+
+        public int? CityId { get; set; }
         public City City { get; set; }
 
         [MaxLength(200)]
@@ -46,6 +51,8 @@ namespace JETech.JEDayCare.Core.Data.Entities
 
         [MaxLength(256)]
         public string Email { get; set; }
+
+        public int StatusId { get; set; }
 
         [Required]
         public Status Status { get; set; }
