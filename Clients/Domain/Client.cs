@@ -63,20 +63,21 @@ namespace JETech.JEDayCare.Core.Clients.Domain
         public ActionPaginationResult<IQueryable<ClientModel>> Get(ActionQueryArgs<ClientModel> args)
         {
             try
-            {               
+            {
                 var result = _sicDb.Clients
                     .Include(p => p.Person.Status)
-                    .Select( c => new ClientModel { 
+                    .Select(c => new ClientModel
+                    {
                         Address = c.Person.Address,
                         CellPhone = c.Person.CellPhone,
                         City = c.Person.City.Name,
-                        Contry = c.Person.Contry.Name, 
+                        Contry = c.Person.Contry.Name,
                         Email = c.Person.Email,
                         Fax = c.Person.Fax,
-                        FirstName =c.Person.FirstName,
+                        FirstName = c.Person.FirstName,
                         FullName = c.Person.FullName,
                         HomePhone = c.Person.HomePhone,
-                        Id  = c.Id,
+                        Id = c.Id,
                         IdentityId = c.Person.IdentityId,
                         LastName = c.Person.LastName,
                         StatusId = c.Person.Status.Id,

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace JETech.JEDayCare.Core.Data.Entities
 {
-    public class Client
+    
+    public class Client 
     {
+        [ForeignKey(nameof(Person))]
         public int Id { get; set; }
 
-        [Required]
         public Person Person { get; set; }
     }
 }

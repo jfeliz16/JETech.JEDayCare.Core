@@ -6,6 +6,7 @@ using System.Text;
 
 namespace JETech.JEDayCare.Core.Data.Entities
 {
+    
     public class Person
     {
         public int Id { get; set; }

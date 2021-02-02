@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210202052215_ClientPerson2.cs" />
+    <Compile Remove="Migrations\20210202052215_ClientPerson2.Designer.cs" />
+    <Compile Remove="Migrations\20210202052847_ClientPersonRemove.cs" />
+    <Compile Remove="Migrations\20210202052847_ClientPersonRemove.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Administration\Domain\" />
     <Folder Include="Administration\Helper\" />
     <Folder Include="Administration\Interfaces\" />

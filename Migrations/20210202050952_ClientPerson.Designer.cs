@@ -4,14 +4,16 @@ using JETech.JEDayCare.Core.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JETech.JEDayCare.Core.Migrations
 {
     [DbContext(typeof(JEDayCareDbContext))]
-    partial class JEDayCareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210202050952_ClientPerson")]
+    partial class ClientPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,16 +77,6 @@ namespace JETech.JEDayCare.Core.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
-
             modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.Contry", b =>
                 {
                     b.Property<int>("Id")
@@ -125,6 +117,10 @@ namespace JETech.JEDayCare.Core.Migrations
 
                     b.Property<int?>("ContryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
@@ -182,6 +178,8 @@ namespace JETech.JEDayCare.Core.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("Persons");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.State", b =>
@@ -420,6 +418,13 @@ namespace JETech.JEDayCare.Core.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.Client", b =>
+                {
+                    b.HasBaseType("JETech.JEDayCare.Core.Data.Entities.Person");
+
+                    b.HasDiscriminator().HasValue("Client");
+                });
+
             modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.City", b =>
                 {
                     b.HasOne("JETech.JEDayCare.Core.Data.Entities.Contry", null)
@@ -429,15 +434,6 @@ namespace JETech.JEDayCare.Core.Migrations
                     b.HasOne("JETech.JEDayCare.Core.Data.Entities.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.Client", b =>
-                {
-                    b.HasOne("JETech.JEDayCare.Core.Data.Entities.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
