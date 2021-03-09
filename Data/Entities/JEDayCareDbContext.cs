@@ -33,5 +33,28 @@ namespace JETech.JEDayCare.Core.Data.Entities
                 optionsBuilder.UseSqlServer("Server=DESKTOP-GO9IDF3;Database=JEDayCare;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            BuildPerson(builder);
+            BuildClient(builder);                
+        }
+
+        private void BuildPerson(ModelBuilder builder)
+        {
+            builder.Entity<Person>()
+                   .Property(p => p.InitDate)
+                   .HasDefaultValueSql("getdate()");
+        }
+
+        private void BuildClient(ModelBuilder builder) 
+        {
+            builder.Entity<Client>()
+                   .HasOne(c => c.Parent)
+                   .WithMany()
+                   .OnDelete(DeleteBehavior.NoAction);
+        }
     }
 }

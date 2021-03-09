@@ -5,18 +5,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Administration\Domain\**" />
+    <Compile Remove="Clients\Domain\**" />
+    <EmbeddedResource Remove="Administration\Domain\**" />
+    <EmbeddedResource Remove="Clients\Domain\**" />
+    <None Remove="Administration\Domain\**" />
+    <None Remove="Clients\Domain\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20210202052215_ClientPerson2.cs" />
     <Compile Remove="Migrations\20210202052215_ClientPerson2.Designer.cs" />
     <Compile Remove="Migrations\20210202052847_ClientPersonRemove.cs" />
     <Compile Remove="Migrations\20210202052847_ClientPersonRemove.Designer.cs" />
+    <Compile Remove="Migrations\20210305170152_addParentToClient.cs" />
+    <Compile Remove="Migrations\20210305170152_addParentToClient.Designer.cs" />
+    <Compile Remove="Migrations\20210305171017_addParentToClient.cs" />
+    <Compile Remove="Migrations\20210305171017_addParentToClient.Designer.cs" />
+    <Compile Remove="Migrations\20210305172239_addParentToClient.cs" />
+    <Compile Remove="Migrations\20210305172239_addParentToClient.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Administration\Domain\" />
     <Folder Include="Administration\Helper\" />
-    <Folder Include="Administration\Interfaces\" />
     <Folder Include="Administration\Models\" />
-    <Folder Include="Administration\Services\" />
     <Folder Include="Clients\Helper\" />
   </ItemGroup>
 

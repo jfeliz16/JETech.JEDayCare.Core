@@ -8,6 +8,7 @@ namespace JETech.JEDayCare.Core.Clients.Interfaces
 {
     public interface IClientService
     {
+        Task<ActionResult<int>> Create(ActionArgs<ClientModel> args);
         ActionPaginationResult<IQueryable<ClientModel>> GetClients(ActionQueryArgs<ClientModel> args);
     }
 }

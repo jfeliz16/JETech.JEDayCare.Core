@@ -11,7 +11,10 @@ namespace JETech.JEDayCare.Core.Data.Entities
     {
         [ForeignKey(nameof(Person))]
         public int Id { get; set; }
-
         public Person Person { get; set; }
+        [Required]
+        public int ParentId { get; set; }
+        [ForeignKey("ParentId")]
+        public Person Parent { get; set; }
     }
 }
