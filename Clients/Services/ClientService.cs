@@ -34,20 +34,20 @@ namespace JETech.JEDayCare.Core.Clients.Services
             {
                 var result = _dbContext.Clients
                     .Include(p => p.Person.Status)
+                    .Include(p => p.Parent)
+                    .OrderByDescending(p => p.Id)
                     .Select(c => new ClientModel
                     {
-                        Parent =
+                        Parent = new PersonModel
                         {
                             Address = c.Parent.Address,
                             CellPhone = c.Parent.CellPhone,
                             Email = c.Parent.Email,
                             Fax = c.Parent.Fax,
                             FirstName = c.Parent.FirstName,
+                            FullName = $"{c.Parent.FirstName} {c.Parent.LastName}",
                             HomePhone = c.Parent.HomePhone,
-                            IdentityId = c.Parent.IdentityId,
                             LastName = c.Parent.LastName,
-                            StatusId = c.Parent.Status.Id,
-                            TypeIdentityId = c.Parent.TypeIdentityId,
                             ZipCode = c.Parent.ZipCode
                         },
                         Id = c.Id,
