@@ -38,8 +38,17 @@ namespace JETech.JEDayCare.Core.Data.Entities
         {
             base.OnModelCreating(builder);
 
+            BuildAdministration(builder);
             BuildPerson(builder);
             BuildClient(builder);                
+        }
+
+        private void BuildAdministration(ModelBuilder builder)
+        {
+            builder.Entity<Contry>()
+                   .Property(p => p.Abbrv)
+                   .HasDefaultValueSql("--");
+
         }
 
         private void BuildPerson(ModelBuilder builder)
@@ -47,6 +56,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
             builder.Entity<Person>()
                    .Property(p => p.InitDate)
                    .HasDefaultValueSql("getdate()");
+
         }
 
         private void BuildClient(ModelBuilder builder) 
