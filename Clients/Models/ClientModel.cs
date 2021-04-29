@@ -16,7 +16,7 @@ namespace JETech.JEDayCare.Core.Clients.Models
 
         [Display(Name = "Status")]
         public string StatusName { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public PersonModel Parent { get; set; }
     }
 }

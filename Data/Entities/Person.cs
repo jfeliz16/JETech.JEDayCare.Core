@@ -15,7 +15,6 @@ namespace JETech.JEDayCare.Core.Data.Entities
         [MaxLength(200)]
         public string FullName { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string FirstName { get; set; }
 
@@ -55,12 +54,11 @@ namespace JETech.JEDayCare.Core.Data.Entities
 
         [Required]
         public DateTime InitDate { get; set; }
-
+                
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public int StatusId { get; set; }
-
         [Required]
         public Status Status { get; set; }
     }

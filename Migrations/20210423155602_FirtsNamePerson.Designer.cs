@@ -4,14 +4,16 @@ using JETech.JEDayCare.Core.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JETech.JEDayCare.Core.Migrations
 {
     [DbContext(typeof(JEDayCareDbContext))]
-    partial class JEDayCareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210423155602_FirtsNamePerson")]
+    partial class FirtsNamePerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +127,7 @@ namespace JETech.JEDayCare.Core.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<DateTime?>("BirthDate")
+                    b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CellPhone")

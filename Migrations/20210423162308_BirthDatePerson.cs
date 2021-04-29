@@ -3,39 +3,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JETech.JEDayCare.Core.Migrations
 {
-    public partial class addAbbrvContry : Migration
+    public partial class BirthDatePerson : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<DateTime>(
-                name: "InitDate",
+                name: "BirthDate",
                 table: "Persons",
-                nullable: false,
-                defaultValueSql: "getdate()",
+                nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Abbrv",
-                table: "Contries",
-                maxLength: 3,
-                nullable: false,
-                defaultValueSql: "'--'");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Abbrv",
-                table: "Contries");
-
             migrationBuilder.AlterColumn<DateTime>(
-                name: "InitDate",
+                name: "BirthDate",
                 table: "Persons",
                 type: "datetime2",
                 nullable: false,
                 oldClrType: typeof(DateTime),
-                oldDefaultValueSql: "getdate()");
+                oldNullable: true);
         }
     }
 }

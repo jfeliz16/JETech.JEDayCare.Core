@@ -22,7 +22,7 @@ namespace JETech.JEDayCare.Core.Administration.Models
         public int? ZipCode { get; set; }
         public string Email { get; set; }        
         public DateTime InitDate { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public int StatusId { get; set; }
         public int StatusName { get; set; }        
     }

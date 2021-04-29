@@ -47,7 +47,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
         {
             builder.Entity<Contry>()
                    .Property(p => p.Abbrv)
-                   .HasDefaultValueSql("--");
+                   .HasDefaultValueSql("'--'");
 
         }
 
