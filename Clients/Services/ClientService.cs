@@ -71,6 +71,46 @@ namespace JETech.JEDayCare.Core.Clients.Services
             }
         }
 
+        public ActionResult<ClientModel> GetClientById(int id) 
+        {
+            try
+            {
+                var result = _dbContext.Clients
+                   .Include(p => p.Person.Status)
+                   .Include(p => p.Parent)                   
+                   .Where(c => c.Id == id)
+                   .Select(c => new ClientModel
+                   {
+                       Parent = new PersonModel
+                       {
+                           Address = c.Parent.Address,
+                           CellPhone = c.Parent.CellPhone,
+                           Email = c.Parent.Email,
+                           Fax = c.Parent.Fax,
+                           FirstName = c.Parent.FirstName,
+                           FullName = $"{c.Parent.FirstName} {c.Parent.LastName}",
+                           HomePhone = c.Parent.HomePhone,
+                           LastName = c.Parent.LastName,
+                           StateId =c.Parent.StateId,
+                           ZipCode = c.Parent.ZipCode
+                       },
+                       Id = c.Id,
+                       FirstNameChild = c.Person.FirstName,
+                       LastNameChild = c.Person.LastName,
+                       BirthDate = c.Person.BirthDate,
+                       StatusId = c.Person.StatusId,
+                       StatusName = c.Person.Status.Name
+                   })
+                   .SingleOrDefault();
+
+                return new ActionResult<ClientModel> { Data = result };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<ActionResult<int>> Create(ActionArgs<ClientModel> args) 
         {
             try
