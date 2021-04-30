@@ -15,7 +15,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
 
         [Required]
         [MaxLength(3)]
-        public string Abbrv { get; set; }
+        public string Code { get; set; }
 
         public ICollection<City> Cities { get; set; }
     }

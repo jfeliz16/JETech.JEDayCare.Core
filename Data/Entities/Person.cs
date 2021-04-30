@@ -33,16 +33,12 @@ namespace JETech.JEDayCare.Core.Data.Entities
         public string CellPhone { get; set; }
 
         [MaxLength(12)]
-        public string Fax { get; set; }
-
-        public int? ContryId { get; set; }
-        public Contry Contry { get; set; }
+        public string Fax { get; set; }        
 
         public int? StateId { get; set; }
         public State State { get; set; }
-
-        public int? CityId { get; set; }
-        public City City { get; set; }
+        
+        public string City { get; set; }
 
         [MaxLength(200)]
         public string Address { get; set; }

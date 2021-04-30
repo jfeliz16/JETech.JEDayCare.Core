@@ -4,14 +4,16 @@ using JETech.JEDayCare.Core.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JETech.JEDayCare.Core.Migrations
 {
     [DbContext(typeof(JEDayCareDbContext))]
-    partial class JEDayCareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210429215948_changeCityToString")]
+    partial class changeCityToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,6 +137,9 @@ namespace JETech.JEDayCare.Core.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ContryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -182,6 +187,8 @@ namespace JETech.JEDayCare.Core.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContryId");
 
                     b.HasIndex("StateId");
 
@@ -461,6 +468,10 @@ namespace JETech.JEDayCare.Core.Migrations
 
             modelBuilder.Entity("JETech.JEDayCare.Core.Data.Entities.Person", b =>
                 {
+                    b.HasOne("JETech.JEDayCare.Core.Data.Entities.Contry", "Contry")
+                        .WithMany()
+                        .HasForeignKey("ContryId");
+
                     b.HasOne("JETech.JEDayCare.Core.Data.Entities.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId");

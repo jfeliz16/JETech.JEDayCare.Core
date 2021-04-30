@@ -14,6 +14,10 @@ namespace JETech.JEDayCare.Core.Data.Entities
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(3)]
+        public string Code { get; set; }
+
+        [Required]
         public Contry Contry { get; set; }
     }
 }
