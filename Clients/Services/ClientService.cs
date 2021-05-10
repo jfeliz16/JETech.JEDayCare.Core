@@ -194,17 +194,55 @@ namespace JETech.JEDayCare.Core.Clients.Services
             if (args.Data.Parent == null) throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Parent\"");
         }
 
-        //public async Task<ActionResult<bool>> GetAttandecesWeek(ActionArgs<DateTime> args) 
-        //{
-        //    try
-        //    {
-        //        DateTime 
-        //    }
-        //    catch (Exception ex)
-        //    {
+        public async Task<ActionResult<List<AttendanceModel>>> GetAttandecesWeek(ActionArgs<DateTime> args)
+        {
+            try
+            {
+                DateTime dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 6); ;
+         
 
-        //        throw;
-        //    }
-        //}
+                //switch (args.Data.DayOfWeek)
+                //{
+                //    case DayOfWeek.Sunday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 6);
+                //        break;
+                //    case DayOfWeek.Monday:
+                //        dateInit = args.Data;
+                //        break;
+                //    case DayOfWeek.Tuesday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day -1);
+                //        break;
+                //    case DayOfWeek.Wednesday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 2);
+                //        break;
+                //    case DayOfWeek.Thursday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 3);
+                //        break;
+                //    case DayOfWeek.Friday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 4);
+                //        break;
+                //    case DayOfWeek.Saturday:
+                //        dateInit = new DateTime(args.Data.Year, args.Data.Month, args.Data.Day - 6);
+                //        break;                  
+                //}
+
+                var attendances = _dbContext.Attendances
+                    .Include(a => a.AttendanceDetails)
+                    .Where(a => a.AttendanceDetails.Any(at => at.AttendaceValue == 1 )
+                            && a.DateAttendance >= dateInit && a.DateAttendance <= args.Data)   
+                    .OrderBy(a=> a.DateAttendance)
+                    .Select(a => new AttendanceModel
+                    {
+                        DayOfWeek = a.DateAttendance.DayOfWeek.ToString(),
+                        Attendances = a.AttendanceDetails.Count()
+                    });
+
+                return new ActionResult<List<AttendanceModel>>{ Data = await attendances.ToListAsync() };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

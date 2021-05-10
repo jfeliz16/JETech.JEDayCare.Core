@@ -11,5 +11,7 @@ namespace JETech.JEDayCare.Core.Data.Entities
 
         [Required]
         public DateTime DateAttendance { get; set; }
+
+        public ICollection<AttendanceDetail> AttendanceDetails { get; set; }
     }
 }
