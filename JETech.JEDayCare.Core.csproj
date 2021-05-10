@@ -27,9 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Administration\Helper\" />
     <Folder Include="Administration\Models\" />
-    <Folder Include="Clients\Helper\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,5 +11,6 @@ namespace JETech.JEDayCare.Core.Clients.Interfaces
         Task<ActionResult<int>> Create(ActionArgs<ClientModel> args);
         ActionPaginationResult<IQueryable<ClientModel>> GetClients(ActionQueryArgs<ClientModel> args);
         ActionResult<ClientModel> GetClientById(int id);
+        Task<ActionResult<bool>> Update(ActionArgs<ClientModel> args);
     }
 }

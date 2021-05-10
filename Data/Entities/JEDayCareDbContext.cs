@@ -25,6 +25,8 @@ namespace JETech.JEDayCare.Core.Data.Entities
         public DbSet<Person> Persons { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<AttendanceDetail>  AttendanceDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

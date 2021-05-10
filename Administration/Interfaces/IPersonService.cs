@@ -7,5 +7,6 @@ namespace JETech.JEDayCare.Core.Administration.Interfaces
     public interface IPersonService
     {
         Task<ActionResult<int>> Create(ActionArgs<PersonModel> args);
+        Task<ActionResult<bool>> Update(ActionArgs<PersonModel> args);
     }
 }

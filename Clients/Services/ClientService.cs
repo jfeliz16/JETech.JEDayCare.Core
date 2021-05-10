@@ -115,8 +115,7 @@ namespace JETech.JEDayCare.Core.Clients.Services
         {
             try
             {
-                if (args.Data == null) throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Data\"");
-                if (args.Data.Parent == null) throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Parent\"");
+                ValidateRequired(args);
 
                 int id = 0;
                 using (var trans = _dbContext.Database.BeginTransaction())
@@ -147,5 +146,65 @@ namespace JETech.JEDayCare.Core.Clients.Services
                 throw;
             }
         }
+
+        public async Task<ActionResult<bool>> Update(ActionArgs<ClientModel> args)
+        {
+            try
+            {
+                ValidateRequired(args);
+
+                if (args.Data.Id == 0)
+                {
+                    throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Id\"");
+                }
+                
+                using (var trans = _dbContext.Database.BeginTransaction())
+                {
+                    var client = _dbContext.Clients.Find(args.Data.Id);
+
+                    var clientModel = new PersonModel()
+                    {
+                        Id = args.Data.Id,
+                        FirstName = args.Data.FirstNameChild,
+                        LastName = args.Data.LastNameChild,
+                        BirthDate = args.Data.BirthDate,
+                        StatusId = args.Data.StatusId
+                    };
+
+                    args.Data.Parent.Id = client.ParentId;
+                    args.Data.Parent.StatusId = args.Data.StatusId;
+
+                    var createClient = await _personService.Update(new ActionArgs<PersonModel> { Data = clientModel });
+                    var createParent = await _personService.Update(new ActionArgs<PersonModel> { Data = args.Data.Parent });
+
+                    await trans.CommitAsync();                    
+                }
+
+                return new ActionResult<bool> { Data = true };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void ValidateRequired(ActionArgs<ClientModel> args) 
+        {
+            if (args.Data == null) throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Data\"");
+            if (args.Data.Parent == null) throw new JETech.NetCoreWeb.Exceptions.JETechException("This field is required \"Parent\"");
+        }
+
+        //public async Task<ActionResult<bool>> GetAttandecesWeek(ActionArgs<DateTime> args) 
+        //{
+        //    try
+        //    {
+        //        DateTime 
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw;
+        //    }
+        //}
     }
 }
