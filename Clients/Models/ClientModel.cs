@@ -9,7 +9,7 @@ namespace JETech.JEDayCare.Core.Clients.Models
     public class ClientModel
     {
         public int Id { get; set; }
-        public string FullName => $"{FirstNameChild} {LastNameChild}";
+        public string FullName { get; set; }
         public string FirstNameChild { get; set; }
         public string LastNameChild { get; set; }
         public int StatusId { get; set; }

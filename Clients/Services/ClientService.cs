@@ -45,7 +45,7 @@ namespace JETech.JEDayCare.Core.Clients.Services
                             Email = c.Parent.Email,
                             Fax = c.Parent.Fax,
                             FirstName = c.Parent.FirstName,
-                            FullName = $"{c.Parent.FirstName} {c.Parent.LastName}",
+                            FullName = c.Person.FullName,
                             HomePhone = c.Parent.HomePhone,
                             LastName = c.Parent.LastName,
                             ZipCode = c.Parent.ZipCode
@@ -88,7 +88,7 @@ namespace JETech.JEDayCare.Core.Clients.Services
                            Email = c.Parent.Email,
                            Fax = c.Parent.Fax,
                            FirstName = c.Parent.FirstName,
-                           FullName = $"{c.Parent.FirstName} {c.Parent.LastName}",
+                           FullName = c.Person.FullName,
                            HomePhone = c.Parent.HomePhone,
                            LastName = c.Parent.LastName,
                            StateId =c.Parent.StateId,
@@ -124,8 +124,11 @@ namespace JETech.JEDayCare.Core.Clients.Services
                     {
                         FirstName = args.Data.FirstNameChild,
                         LastName = args.Data.LastNameChild,
-                        BirthDate = args.Data.BirthDate
+                        BirthDate = args.Data.BirthDate,
+                        StatusId = (int)Global.StatusCode.Activo                        
                     };
+
+                    args.Data.Parent.StatusId = clientModel.StatusId;
 
                     var createClient = await _personService.Create(new ActionArgs<PersonModel> {Data = clientModel });
                     var createParent = await _personService.Create(new ActionArgs<PersonModel> { Data = args.Data.Parent });                    
